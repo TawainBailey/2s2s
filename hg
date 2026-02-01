@@ -8914,7 +8914,14 @@ function Starlight:CreateWindow(WindowSettings)
 					}, "colorpicker_accents")
 					colorpickers.accent2 = instance:CreateLabel({
 						Name = "Accent Brighter",
-				}, "colorpicker_accents2")
+					}, "colorpicker_accents")
+				end
+
+				-- backgrounds
+				do
+					do
+						local debounce = false
+						local cp = colorpickers.bg:AddColorPicker({
 							IgnoreConfig = true,
 							CurrentValue = Starlight.CurrentTheme.Backgrounds.Dark,
 							Callback = function(c)
@@ -10947,6 +10954,6 @@ if isStudio and enabled then
 	}, "customtab")
 
 	Starlight:LoadAutoloadConfig()
-end 
+end --]=]0
 
 return Starlight
