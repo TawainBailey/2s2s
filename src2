@@ -10956,7 +10956,4 @@ if isStudio and enabled then
 	Starlight:LoadAutoloadConfig()
 end --]=]0
 
---// ENDSECTION
-})
-
 return Starlight
