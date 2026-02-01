@@ -8914,7 +8914,12 @@ function Starlight:CreateWindow(WindowSettings)
 					}, "colorpicker_accents")
 					colorpickers.accent2 = instance:CreateLabel({
 						Name = "Accent Brighter",
-				}, "colorpicker_accents2")
+					}, "colorpicker_accents")
+				end
+
+				-- backgrounds
+				do
+					do
 						local debounce = false
 						local cp = colorpickers.bg:AddColorPicker({
 							IgnoreConfig = true,
@@ -9375,7 +9380,7 @@ function Starlight:CreateWindow(WindowSettings)
 				local newName = instance:CreateInput({
 					Name = "New Theme Name",
 					PlaceholderText = "Name",
-					RemoveTextOnFocus = false,
+					RemoveTextOnFocus = true,
 					Callback = function(v) end,
 				}, "newthemename")
 				instance:CreateButton({
@@ -9383,42 +9388,42 @@ function Starlight:CreateWindow(WindowSettings)
 					Icon = 6031471484,
 					CenteredContent = ButtonsCentered,
 					Callback = function()
-					if not newName.Values.CurrentValue or String.IsEmptyOrNull(newName.Values.CurrentValue) then
-						Starlight:Notification({
-							Title = "Theme Error",
-							Icon = 129398364168201,
-							Content = "Theme name cannot be empty.",
-						})
-						return
-					end
-					local sanitizedName = string.gsub(newName.Values.CurrentValue, "/", " ")
-					sanitizedName = string.gsub(sanitizedName, "\\", " ")
+						if not newName.CurrentValue or String.IsEmptyOrNull(newName.CurrentValue) then
+							Starlight:Notification({
+								Title = "Theme Error",
+								Icon = 129398364168201,
+								Content = "Theme name cannot be empty.",
+							})
+							return
+						end
+						newName.CurrentValue = string.gsub(newName.CurrentValue, "/", " ")
+						newName.CurrentValue = string.gsub(newName.CurrentValue, "\\", " ")
 
-					if
-						isfile(`{themesPath}/{sanitizedName}{Starlight.FileSystem.FileExtension}`)
-						or themesArray[sanitizedName]
-					then
-						Starlight:Notification({
-							Title = "Theme Exists",
-							Icon = 129398364168201,
-							Content = "Theme with the provided name exists already. Overwrite it with overwrite theme below.",
-						})
-						return
-					end
-
-					local success, returned = pcall(function()
-						if isStudio or not isfile then
-							return "File System unavailable."
+						if
+							isfile(`{themesPath}/{newName.CurrentValue}{Starlight.FileSystem.FileExtension}`)
+							or themesArray[newName.CurrentValue]
+						then
+							Starlight:Notification({
+								Title = "Theme Exists",
+								Icon = 129398364168201,
+								Content = "Theme with the provided name exists already. Overwrite it with overwrite theme below.",
+							})
+							return
 						end
 
-						local fullPath = `{themesPath}/{sanitizedName}{Starlight.FileSystem.FileExtension}`
+						local success, returned = pcall(function()
+							if isStudio or not isfile then
+								return "File System unavailable."
+							end
 
-						local success, encoded = ThemeMethods.encodeTheme(Starlight.CurrentTheme)
-						if not success then
-							return false, "Unable to encode into JSON data"
-						end
+							local fullPath = `{themesPath}/{newName.CurrentValue}{Starlight.FileSystem.FileExtension}`
 
-						writefile(fullPath, encoded)
+							local success, encoded = ThemeMethods.encodeTheme(Starlight.CurrentTheme)
+							if not success then
+								return false, "Unable to encode into JSON data"
+							end
+
+							writefile(fullPath, encoded)
 						end)
 						if not success then
 							Starlight:Notification({
@@ -9458,7 +9463,7 @@ function Starlight:CreateWindow(WindowSettings)
 						Starlight:Notification({
 							Title = "Theme Created",
 							Icon = 6026568227,
-							Content = string.format("Created Theme %q", sanitizedName),
+							Content = string.format("Created Theme %q", newName.CurrentValue),
 						})
 					end,
 				}, "newtheme")
