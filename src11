@@ -417,6 +417,40 @@ local Themes = {
 			}),
 		},
 	},
+	RedEye = {
+		Backgrounds = {
+			Dark = Color3.fromRGB(12, 12, 12),
+			Medium = Color3.fromRGB(8, 8, 8),
+			Light = Color3.fromRGB(6, 6, 6),
+			Groupbox = Color3.fromRGB(8, 8, 8),
+			Highlight = Color3.fromRGB(20, 20, 20),
+		},
+		Foregrounds = {
+			Active = Color3.fromRGB(255, 255, 255),
+			Light = Color3.fromRGB(255, 255, 255),
+			Medium = Color3.fromRGB(199, 195, 186),
+			Dark = Color3.fromRGB(61, 51, 62),
+			MediumHover = Color3.fromRGB(185, 177, 160),
+			DarkHover = Color3.fromRGB(81, 71, 82),
+		},
+		Miscellaneous = {
+			Divider = Color3.fromRGB(255, 0, 16),
+			Shadow = Color3.fromRGB(12, 12, 12),
+			LighterShadow = Color3.fromRGB(15, 15, 15),
+		},
+		Accents = {
+			Main = ColorSequence.new({
+				ColorSequenceKeypoint.new(0.0, Color3.fromRGB(255, 0, 16)),
+				ColorSequenceKeypoint.new(0.5, Color3.fromRGB(180, 0, 0)),
+				ColorSequenceKeypoint.new(1.0, Color3.fromRGB(202, 23, 23)),
+			}),
+			Brighter = ColorSequence.new({
+				ColorSequenceKeypoint.new(0.0, Color3.fromRGB(222, 12, 12)),
+				ColorSequenceKeypoint.new(0.5, Color3.fromRGB(222, 32, 32)),
+				ColorSequenceKeypoint.new(1.0, Color3.fromRGB(0, 0, 0)),
+			}),
+		},
+	},
 	["Neo (Dark)"] = {
 		Backgrounds = {
 			Dark = Color3.fromRGB(13, 13, 13),
@@ -8859,6 +8893,7 @@ function Starlight:CreateWindow(WindowSettings)
 					"Ubuntu",
 					"Tokyo Night",
 					"Hollywood Fluent",
+					"RedEye",
 					"Catppuccin Mocha",
 					"Catppuccin Macchiato",
 					"Catppuccin Frappe",
@@ -9460,6 +9495,7 @@ function Starlight:CreateWindow(WindowSettings)
 							"Ubuntu",
 							"Tokyo Night",
 							"Hollywood Fluent",
+							"RedEye",
 						}
 						local customThemes = not isStudio and Starlight.FileSystem:RefreshConfigList(themesPath) or {}
 						for _, v in pairs(customThemes) do
@@ -9666,6 +9702,7 @@ function Starlight:CreateWindow(WindowSettings)
 							"Ubuntu",
 							"Tokyo Night",
 							"Hollywood Fluent",
+							"RedEye",
 						}
 						local customThemes = not isStudio and Starlight.FileSystem:RefreshConfigList(themesPath) or {}
 						for _, v in pairs(customThemes) do
