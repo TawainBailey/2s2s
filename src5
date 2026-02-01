@@ -10947,6 +10947,6 @@ if isStudio and enabled then
 	}, "customtab")
 
 	Starlight:LoadAutoloadConfig()
-end --]=]0
+end 
 
 return Starlight
