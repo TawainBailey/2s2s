@@ -8914,7 +8914,7 @@ function Starlight:CreateWindow(WindowSettings)
 					}, "colorpicker_accents")
 					colorpickers.accent2 = instance:CreateLabel({
 						Name = "Accent Brighter",
-					}, "colorpicker_accents")
+					}, "colorpicker_accent_brighter")
 				end
 
 				-- backgrounds
